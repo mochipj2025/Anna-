@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第1話：現場の過酷さと、目を伏せる「合理化」の鎧 | 転生アンナの観察手帳</title>
+    <!-- 明朝体と、アンナのノート用のゴシック体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cinzel+Decorative:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* 中世ヨーロッパの古びた書物・羊皮紙をイメージ */
+            --bg-color: #171513;
+            --text-color: #d1c5b4;
+            --accent-color: #8c2a2a;
+            /* グリフィンの緋色 */
+            --gold-color: #cda25b;
+            --parchment-bg: #e5dcc5;
+            /* 古びた紙の色 */
+            --parchment-text: #2c1e16;
+            /* 褪せたインク色 */
+
+            --font-novel: 'Shippori Mincho', serif;
+            --font-sans: 'Zen Kaku Gothic New', sans-serif;
+            --font-title: 'Cinzel Decorative', 'Shippori Mincho', serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            background-image:
+                /* 古城の石壁や革表紙のようなテクスチャ */
+                radial-gradient(circle at 50% 50%, rgba(40, 30, 20, 0.5) 0%, rgba(10, 8, 5, 0.9) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            color: var(--text-color);
+            font-family: var(--font-novel);
+            line-height: 2.2;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ヘッダー・フッター（ナビゲーション） */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            background: rgba(13, 11, 10, 0.85);
+            border-bottom: 1px solid rgba(205, 162, 91, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            box-sizing: border-box;
+            z-index: 1000;
+            font-family: var(--font-title);
+            font-size: 0.95rem;
+            letter-spacing: 0.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .site-title {
+            color: var(--gold-color);
+            font-weight: 700;
+            text-decoration: none;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* 横書きの美しい小説エリア */
+        .novel-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 120px;
+            padding-bottom: 80px;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            box-sizing: border-box;
+            font-size: 1.15rem;
+            letter-spacing: 0.08em;
+        }
+
+        .chapter-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 3rem;
+            color: #ebdcc9;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 1rem;
+            font-family: var(--font-novel);
+            word-break: keep-all;
+            /* 単語の途中での改行を防ぐ（日本語の場合は句読点などでのみ改行） */
+            overflow-wrap: break-word;
+            line-height: 1.5;
+        }
+
+        .novel-text {
+            color: #d1c5b4;
+            text-indent: 1em;
+            /* ダークトーンの中世の読書枠 */
+            background: rgba(20, 15, 12, 0.8);
+            padding: 4.5rem 5rem;
+            border: 1px solid rgba(205, 162, 91, 0.2);
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(0, 0, 0, 0.5);
+            /* 日本語の自然な改行処理のための調整 */
+            text-align: left;
+            /* 両端揃えを解除し、自然な字送りに変更 */
+            line-break: strict;
+            /* 禁則処理を厳格に */
+            word-wrap: break-word;
+            word-break: auto-phrase;
+            /* 文節での自然な改行を促す（対応ブラウザ向け） */
+            overflow-wrap: break-word;
+            position: relative;
+        }
+
+        /* 四隅の飾り枠（アンティークなコーナー装飾） */
+        .novel-text::before,
+        .novel-text::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(205, 162, 91, 0.4);
+            pointer-events: none;
+        }
+
+        .novel-text::before {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .novel-text::after {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* さらにもう一対の角（右上のL字、左下のL字） */
+        .ornament-tr,
+        .ornament-bl {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(205, 162, 91, 0.4);
+            pointer-events: none;
+        }
+
+        .ornament-tr {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .ornament-bl {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .novel-text p {
+            margin: 0 0 1.5rem 0;
+            /* 横書きの段落間隔（下マージン） */
+        }
+
+        /* 空行の表現 */
+        .spacer {
+            margin-bottom: 2.5rem;
+        }
+
+        .scene-break {
+            margin: 3.5rem 0;
+            color: var(--gold-color);
+            text-align: center;
+            opacity: 0.6;
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scene-break::before,
+        .scene-break::after {
+            content: '';
+            display: inline-block;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(205, 162, 91, 0.5), transparent);
+            margin: 0 15px;
+        }
+
+        .scene-break span {
+            display: inline-block;
+            transform: translateY(2px);
+        }
+
+        /* アンナの観察手帳（付録エリア：羊皮紙風） */
+        .anna-note {
+            display: block;
+            background-color: var(--parchment-bg);
+            background-image:
+                radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            border: 1px solid rgba(139, 105, 62, 0.4);
+            border-radius: 2px;
+            padding: 2.5rem;
+            margin: 4rem auto 0;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: var(--font-sans);
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.8),
+                inset 0 0 30px rgba(139, 105, 62, 0.1);
+            position: relative;
+        }
+
+        /* 羊皮紙の端のダメージ表現（飾り） */
+        .anna-note::before,
+        .anna-note::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 1px solid rgba(139, 105, 62, 0.3);
+            pointer-events: none;
+        }
+
+        .anna-note::before {
+            top: 5px;
+            left: 5px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .anna-note::after {
+            bottom: 5px;
+            right: 5px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .note-header {
+            color: #5c1818;
+            font-family: var(--font-title);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(92, 24, 24, 0.3);
+            padding-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        .note-header svg {
+            stroke: #5c1818;
+        }
+
+        .note-text {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--parchment-text);
+            margin: 0;
+            font-family: var(--font-novel);
+            font-weight: 500;
+        }
+
+        .note-text strong {
+            color: #5c1818;
+            font-weight: 700;
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+        }
+
+        /* リッチ機能追加（プログレスバー・ヒーロー画像・フェードイン・ドロップキャップ） */
+        .progress-container {
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            position: fixed;
+            top: 60px;
+            /* ヘッダーの高さ */
+            z-index: 999;
+        }
+
+        .progress-bar {
+            height: 3px;
+            background: var(--gold-color);
+            width: 0%;
+            box-shadow: 0 0 10px var(--gold-color);
+            transition: width 0.1s;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background-image: url('images/eyecatch_ep01.png');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(205, 162, 91, 0.3);
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to bottom, transparent, var(--bg-color));
+        }
+
+        .drop-cap::first-letter {
+            font-size: 3.5rem;
+            float: left;
+            margin-right: 0.15em;
+            line-height: 0.8;
+            color: var(--gold-color);
+            font-family: var(--font-title);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            padding-top: 8px;
+            /* 縦位置微調整 */
+        }
+
+        /* フェードインアニメーション用 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* スマホ対応 */
+        @media screen and (max-width: 768px) {
+            .novel-container {
+                padding-top: 100px;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                font-size: 1rem;
+            }
+
+            .novel-text {
+                padding: 2rem 1.5rem;
+                /* スマホ用余白縮小 */
+            }
+
+            .chapter-title {
+                font-size: 1.6rem;
+                margin-bottom: 2rem;
+                border-left: none;
+                border-bottom: 2px solid var(--accent-color);
+                padding-bottom: 1rem;
+                padding-left: 0;
+            }
+
+            .anna-note {
+                margin-top: 3rem;
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* CTA・ボタン類 */
+        .cta-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 4rem auto 0;
+            width: 100%;
+            gap: 1.5rem;
+        }
+
+        .btn-note {
+            background-color: transparent;
+            color: var(--gold-color);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--gold-dark);
+            font-family: var(--font-title);
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: inline-block;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-note::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gold-dark);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .btn-note:hover {
+            color: #fff;
+            border-color: var(--gold-color);
+            box-shadow: 0 0 15px rgba(205, 162, 91, 0.4);
+        }
+
+        .btn-note:hover::before {
+            opacity: 0.3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header-glass">
+        <a href="index.html" class="site-title">転生アンナの観察手帳</a>
+        <div style="color: var(--gold-dark);">I</div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <main class="novel-container">
+
+        <div class="hero-image"></div>
+
+        <h1 class="chapter-title">第1話：現場の過酷さと、<span style="display:inline-block;">目を伏せる「合理化」の鎧</span></h1>
+
+        <div class="novel-text">
+            <div class="ornament-tr"></div>
+            <div class="ornament-bl"></div>
+
+            <p style="text-align:center; font-weight:bold; color:var(--gold-color);">《常連客の手記 —— 今週のサロンスキャンダル》</p>
+            <p class="spacer"></p>
+
+            <p class="drop-cap">親愛なるセラピストの皆さま。<br>
+                そして、わたくしのように癒やしを求めるお客様。<br>
+                この癒やし業界にはびこる数多の黒い噂のなかで、最も滑稽で厄介な流行病について、今宵はわたくしのペンを走らせていただきます。</p>
+            <p>その病の名は――『覚悟』。<br>
+                この言葉ほど、現代の純真なセラピストたちを都合よく狂わせ、高額なチケット（コンサル名目のディプロマ）へと散財させる甘い毒はございません。彼女たちが「現場の過酷さ」という見え透いた恐怖の前に膝を屈し、自ら進んで搾取のシステムへと身を投じていく様は、まさに悲喜劇というほかありません。
+            </p>
+            <p class="spacer"></p>
+
+            <p>なぜそんな内情に詳しいのかって？<br>
+                ええ、わたくしはただの「常連客」。この街の片隅にある60分2980円の活気ある大衆リラクゼーションサロンで、いつも指名料も払わず、名も知らぬ無口なセラピストの極上な揉みほぐしを受けながら、ただ人間観察を楽しむ暇人にすぎません。
+            </p>
+            <p class="spacer"></p>
+
+            <p>このサロンのスタッフルームには、魔法のように強張った筋肉を緩めるお人好しな「店長」と、もう一人――ウィーンから100年の時を越えて転生してきたと嘯く、精神分析の祖・フロイトの娘「アンナ」という名の、猛毒の受付嬢がいるのですから。退屈しのぎには事欠きませんわ。
+            </p>
+            <p class="spacer"></p>
+
+            <p>さて、本日わたくしが薄いカーテンを張られただけのベッドで指圧を堪能しながら聞き耳を立てていたのは、スタッフルームに迷い込んだ哀れな子羊、新人セラピスト「ユミ」のお話です。</p>
+
+            <div class="scene-break"><span>♦</span></div>
+
+            <p>「ねえ、聞いてる？ パパが知ったら、間違いなく葉巻をへし折るわよ」</p>
+            <p>カーテンの向こうのスタッフルームから、今日もアンナの冷たい声が響いてきました。きっとパイプ椅子で脚を組みながら、不機嫌そうにティーバッグの紅茶でもすすっているのでしょう。</p>
+            <p class="spacer"></p>
+
+            <p>「さっき上がってきた新人、ユミだったかしら。彼女の認知システム、完全にバグを起こしてるわよ」</p>
+
+            <p class="spacer"></p>
+
+            <p>カーテンの奥から「まあまあアンナちゃん。あの子も、高いお金払っちゃったからね」という、いつもの呆れ気味かつ優しいフォローの声が聞こえます。お人好しな店長です。きっと山積みのタオルでも畳みながら、受付嬢の毒舌をいなしているのでしょう。
+            </p>
+
+            <p class="spacer"></p>
+
+            <p>ちょうどその時、スタッフルームのドアが開く音がしました。<br>
+                「お疲れ様です……。あー、今日も指が痛い。帰ったら、後輩をスクールの体験会に誘うLINE、作らなきゃ……」</p>
+
+            <p class="spacer"></p>
+
+            <p>虚ろな声でつぶやくのは、新人セラピストのユミです。彼女は「いつか自分のプライベートサロンを開きたい」という純粋な夢を持ち、なけなしの貯金60万円をはたいて、SNSで見つけた『〇〇式個人サロン開業スクール』に通い始めたばかりでした。
+            </p>
+
+            <p class="spacer"></p>
+
+            <p>タオルを畳む擦過音が止まり、店長が歩み寄る気配がします。<br>
+                「ユミちゃん、肩ガチガチだよ。ちょっと座りな」<br>
+                パイプ椅子が軋み、店長のプロの温かい手のひらが、ユミの強張った僧帽筋を優しく捉えたのでしょう。</p>
+
+            <p class="spacer"></p>
+
+            <p>「あぁ……」と、ユミの口から無防備な吐息が漏れます。<br>
+                「やっぱり店長の手はすごいなぁ。……私、本当は店長みたいに、上手にお客さんをほぐせるようになりたかったんです」</p>
+
+            <p class="spacer"></p>
+
+            <p>ふとした本音の吐露でした。しかし、店長が不思議そうに首を傾げる気配が伝わります。<br>
+                「え？ でもユミちゃん、そのために高いお金払って、サロン開業のスクールに通ってるんじゃないの？」</p>
+
+            <p class="spacer"></p>
+
+            <p>「それが……」ユミの声が、急に小さく震え始めました。<br>
+                「スクールでは、触り方なんて全然教えてくれなくて。『現場で薄利多売のもみほぐしを続けると体がもたない』『まずは高額コンサルを売って、本気の覚悟を決めないと成功しない』って……。今はひたすら、次のスクール生を勧誘するLINEを作らされてるんです」
+            </p>
+
+            <p class="spacer"></p>
+
+            <p>わたくしはベッドの顔穴に顔を埋めたまま、なるほどと密かに頷きました。<br>
+                癒やしの技術ではなく、不安を煽って搾取の連鎖に引きずり込む手口です。</p>
+
+            <p class="spacer"></p>
+
+            <p>「典型的な『合理化（Rationalization）』ね」</p>
+            <p>紅茶のカップを置く音とともに、アンナの容赦ない分析のメスが入ります。<br>
+                「高いお金をドブに捨てたという事実（サンクコストの損失）を直視すれば精神が崩壊してしまう。だから、脳が『これは成功するための覚悟代なんだ』『現場は過酷だから、ビジネス側に回るのが正解なんだ』というもっともらしい理由をでっち上げて、自己を正当化しているの。たかだか数千ポンドの紙切れのために、一番大切だったはずの『ただ触れたい』という純粋な気持ちをすり替えるなんて、本当に腹立たしいわ」
+            </p>
+
+            <p class="spacer"></p>
+
+            <p>静寂。<br>
+                その毒舌は、鋭利な刃物のようにユミのシステムの根幹を突き刺しました。</p>
+
+            <p class="spacer"></p>
+
+            <p>「私は……私はただ……！」</p>
+            <p>無理やり着込んでいた『合理化』の鎧が音を立てて崩れ落ち、ユミが泣き崩れる気配が伝わってきました。騙されていた事実を、ようやく彼女の無意識が受容した瞬間です。</p>
+
+            <p class="spacer"></p>
+
+            <p>「大丈夫。またここから、少しずつ手技を覚えていけばいいよ」</p>
+            <p>店長は泣きじゃくるユミの背中を、ただ静かに、ゆっくりとさすり続けていました。言葉ではなく、その揺るぎない手技だけが、彼女の崩壊した心を物理的に繋ぎ止めているのが想像できました。</p>
+
+            <p class="spacer"></p>
+
+            <p>「……パパが聞いたら、葉巻を丸飲みにして卒倒するわね」<br>
+                呆れたような、それでいてどこか面白がるようなアンナの呟きが聞こえました。</p>
+
+            <p class="spacer"></p>
+
+            <p>「心を解きほぐすのに、言葉の面談じゃなくて『ただ触るだけ』の物理アプローチが効果を発揮するだなんて。しかもこれ、相手を仰向けに寝かせて心の内を語らせる、パパの考案した『自由連想法』と同じシステムじゃない」
+            </p>
+
+            <p class="spacer"></p>
+
+            <p>サラサラと、万年筆が紙を走る音がスタッフルームから漏れ聞こえてきます。<br>
+                きっとアンナは、手元の分厚い革張りの手帳――彼女が『note』と呼んでいる観察記録――に、今目の前で起きたあまりにも非科学的で、しかし極限まで人間臭いこの臨床結果を、嬉々として書き留めているのでしょう。
+            </p>
+
+            <p class="spacer"></p>
+
+            <p>「はい、60分。お疲れ様でした」<br>
+                無口なセラピストが静かに告げ、わたくしの極上の癒やしの時間は終わりを迎えました。</p>
+
+            <p class="spacer"></p>
+
+            <p>身仕度を整えながら、ふとスタッフルームのほうへ視線をやります。<br>
+                癒やし業界の「闇」を容赦なく暴き立てる猛毒の受付嬢と、小難しい理屈抜きに、ただ温かい手で迷える者の強張りを解いてしまう店長。<br>
+                客を甘やかすような耳触りのいい言葉など、ここには一切ありません。だからこそ、この薄汚れた……いえ、活気ある大衆サロンは、決して万人受けはしないでしょう。</p>
+
+            <p class="spacer"></p>
+
+            <p>それでも、なぜこんなにも予約が絶えないのか。<br>
+                その答えは、先ほどまでの重たい「言い訳」の鎧を脱ぎ捨て、羽のように軽くなったわたくし自身の背中が、何よりも雄弁に物語っていました。</p>
+
+            <p class="spacer"></p>
+
+            <p>やれやれ。これだから、この悪趣味なサロン通いはやめられません。</p>
+
+            <p class="spacer"></p>
+
+            <p>さて、愛しき皆さま。<br>
+                あなたのお背中にも、重たい鎧が張り付いてはいませんか？<br>
+                もしご自身の強張りに気付いたなら、どうかお早めに。<br>
+                わたくしは……ええ、もちろん次回の予約を入れて帰るつもりです。猛毒の分析と至高の手技が織りなすこの痛快なひと時を、また楽しみにしながら。</p>
+        </div>
+
+        <!-- 横書きのノート -->
+        <aside class="anna-note">
+            <div class="note-header">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+                探求者の手記 - アンナの観察記録
+            </div>
+            <p class="note-text">
+                <strong>No.I：合理化（Rationalization）</strong><br><br>
+                自分の失敗や受け入れがたい現実に対して、無意識のうちに「もっともらしい理由（言い訳）」をつけて正当化し、心の痛みを和らげる防衛機制。<br><br>
+                酸っぱい葡萄の寓話などが有名だが、現代のサロン業界では高額なコンサル・スクール代（埋没費用）への執着から、「これは成功するための覚悟代だった」「現場の過酷さを回避するための賢い選択だ」などと、恐怖やビジネス論理を用いて自分を納得（正当化）させる形で強力に作動することが多い。<br>
+                言い訳を重ねている間は、常に自己欺瞞の緊張で背中が強張ります。そんな時は、一旦「覚悟」なんていう曖昧な言葉を手放して、本当にやりたかった「ただ触れたい」という原初の衝動を思い出し、誰かに背中を温めてもらうのも一つの手段かもしれませんね。
+            </p>
+        </aside>
+
+        <!-- アクション導線 -->
+        <div class="cta-section">
+            <p
+                style="color:var(--gold-dark); font-family:var(--font-sans); font-size: 0.95rem; text-align:center; margin:0;">
+                この裏口（考察・サロン現場の実態）は特別な扉の奥へ
+            </p>
+            <a href="https://note.com/mochisuranote/m/m51c10d54975d" target="_blank" class="btn-note">
+                結社に戻る
+            </a>
+        </div>
+
+    </main>
+
+    <script>
+        // スクロール読了プログレスバー
+        window.addEventListener('scroll', function () {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        });
+
+        // スクロール連動フェードインアニメーション
+        document.addEventListener("DOMContentLoaded", function () {
+            // 対象となる要素に fade-in クラスを付与
+            const elements = document.querySelectorAll('.novel-text p, .scene-break, .anna-note');
+            elements.forEach(el => el.classList.add('fade-in'));
+
+            // Intersection Observerで画面内に入ったか判定
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // 一度表示されたら監視を解除
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+
+</html>
