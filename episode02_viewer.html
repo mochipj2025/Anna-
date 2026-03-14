@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第2話：解剖学とペパーミント、「知性化」の鎧 | 転生アンナの観察手帳</title>
+    
+    <!-- OGP (Open Graph Protocol) 設定：リンクカード用 -->
+    <meta property="og:title" content="第2話：解剖学とペパーミント、「知性化」の鎧 | 転生アンナの観察手帳">
+    <meta property="og:description" content="癒やし業界の「闇」をフロイトの娘・アンナが容赦なく分析するスピンオフ小説。薄明かりの特設ビューアでお楽しみください。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mochipj2025.github.io/Anna-/episode02_viewer.html">
+    <meta property="og:image" content="https://mochipj2025.github.io/Anna-/images/eyecatch_ep02.png">
+    
+    <!-- Twitterカード用 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="第2話：解剖学とペパーミント、「知性化」の鎧 | 転生アンナの観察手帳">
+    <meta name="twitter:description" content="癒やし業界の「闇」をフロイトの娘・アンナが容赦なく分析するスピンオフ小説。">
+    <meta name="twitter:image" content="https://mochipj2025.github.io/Anna-/images/eyecatch_ep02.png">
+    
+    <!-- 明朝体と、アンナのノート用のゴシック体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cinzel+Decorative:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* 中世ヨーロッパの古びた書物・羊皮紙をイメージ */
+            --bg-color: #171513;
+            --text-color: #d1c5b4;
+            --accent-color: #8c2a2a;
+            /* グリフィンの緋色 */
+            --gold-color: #cda25b;
+            --parchment-bg: #e5dcc5;
+            /* 古びた紙の色 */
+            --parchment-text: #2c1e16;
+            /* 褪せたインク色 */
+
+            --font-novel: 'Shippori Mincho', serif;
+            --font-sans: 'Zen Kaku Gothic New', sans-serif;
+            --font-title: 'Cinzel Decorative', 'Shippori Mincho', serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            background-image:
+                /* 古城の石壁や革表紙のようなテクスチャ */
+                radial-gradient(circle at 50% 50%, rgba(40, 30, 20, 0.5) 0%, rgba(10, 8, 5, 0.9) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            color: var(--text-color);
+            font-family: var(--font-novel);
+            line-height: 2.2;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ヘッダー・フッター（ナビゲーション） */
+        .header-glass {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            background: rgba(13, 11, 10, 0.85);
+            border-bottom: 1px solid rgba(205, 162, 91, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            box-sizing: border-box;
+            z-index: 1000;
+            font-family: var(--font-title);
+            font-size: 0.95rem;
+            letter-spacing: 0.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .site-title {
+            color: var(--gold-color);
+            font-weight: 700;
+            text-decoration: none;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* 横書きの美しい小説エリア */
+        .novel-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 120px;
+            padding-bottom: 80px;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            box-sizing: border-box;
+            font-size: 1.15rem;
+            letter-spacing: 0.08em;
+        }
+
+        .chapter-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 3rem;
+            color: #ebdcc9;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 1rem;
+            font-family: var(--font-novel);
+            word-break: keep-all;
+            /* 単語の途中での改行を防ぐ（日本語の場合は句読点などでのみ改行） */
+            overflow-wrap: break-word;
+            line-height: 1.5;
+        }
+
+        .novel-text {
+            color: #d1c5b4;
+            text-indent: 1em;
+            /* ダークトーンの中世の読書枠 */
+            background: rgba(20, 15, 12, 0.8);
+            padding: 4.5rem 5rem;
+            border: 1px solid rgba(205, 162, 91, 0.2);
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(0, 0, 0, 0.5);
+            /* 日本語の自然な改行処理のための調整 */
+            text-align: left;
+            /* 両端揃えを解除し、自然な字送りに変更 */
+            line-break: strict;
+            /* 禁則処理を厳格に */
+            word-wrap: break-word;
+            word-break: auto-phrase;
+            /* 文節での自然な改行を促す（対応ブラウザ向け） */
+            overflow-wrap: break-word;
+            position: relative;
+        }
+
+        /* 四隅の飾り枠（アンティークなコーナー装飾） */
+        .novel-text::before,
+        .novel-text::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(205, 162, 91, 0.4);
+            pointer-events: none;
+        }
+
+        .novel-text::before {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .novel-text::after {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* さらにもう一対の角（右上のL字、左下のL字） */
+        .ornament-tr,
+        .ornament-bl {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(205, 162, 91, 0.4);
+            pointer-events: none;
+        }
+
+        .ornament-tr {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .ornament-bl {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .novel-text p {
+            margin: 0 0 1.5rem 0;
+            /* 横書きの段落間隔（下マージン） */
+        }
+
+        /* 空行の表現 */
+        .spacer {
+            margin-bottom: 2.5rem;
+        }
+
+        .scene-break {
+            margin: 3.5rem 0;
+            color: var(--gold-color);
+            text-align: center;
+            opacity: 0.6;
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scene-break::before,
+        .scene-break::after {
+            content: '';
+            display: inline-block;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(205, 162, 91, 0.5), transparent);
+            margin: 0 15px;
+        }
+
+        .scene-break span {
+            display: inline-block;
+            transform: translateY(2px);
+        }
+
+        /* アンナの観察手帳（付録エリア：羊皮紙風） */
+        .anna-note {
+            display: block;
+            background-color: var(--parchment-bg);
+            background-image:
+                radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            border: 1px solid rgba(139, 105, 62, 0.4);
+            border-radius: 2px;
+            padding: 2.5rem;
+            margin: 4rem auto 0;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: var(--font-sans);
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.8),
+                inset 0 0 30px rgba(139, 105, 62, 0.1);
+            position: relative;
+        }
+
+        /* 羊皮紙の端のダメージ表現（飾り） */
+        .anna-note::before,
+        .anna-note::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 1px solid rgba(139, 105, 62, 0.3);
+            pointer-events: none;
+        }
+
+        .anna-note::before {
+            top: 5px;
+            left: 5px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .anna-note::after {
+            bottom: 5px;
+            right: 5px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .note-header {
+            color: #5c1818;
+            font-family: var(--font-title);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(92, 24, 24, 0.3);
+            padding-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        .note-header svg {
+            stroke: #5c1818;
+        }
+
+        .note-text {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--parchment-text);
+            margin: 0;
+            font-family: var(--font-novel);
+            font-weight: 500;
+        }
+
+        .note-text strong {
+            color: #5c1818;
+            font-weight: 700;
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+        }
+
+        /* リッチ機能追加（プログレスバー・ヒーロー画像・フェードイン・ドロップキャップ） */
+        .progress-container {
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            position: fixed;
+            top: 60px;
+            /* ヘッダーの高さ */
+            z-index: 999;
+        }
+
+        .progress-bar {
+            height: 3px;
+            background: var(--gold-color);
+            width: 0%;
+            box-shadow: 0 0 10px var(--gold-color);
+            transition: width 0.1s;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background-image: url('images/eyecatch_ep02.png');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(205, 162, 91, 0.3);
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to bottom, transparent, var(--bg-color));
+        }
+
+        .drop-cap::first-letter {
+            font-size: 3.5rem;
+            float: left;
+            margin-right: 0.15em;
+            line-height: 0.8;
+            color: var(--gold-color);
+            font-family: var(--font-title);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            padding-top: 8px;
+            /* 縦位置微調整 */
+        }
+
+        /* フェードインアニメーション用 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* スマホ対応 */
+        @media screen and (max-width: 768px) {
+            .novel-container {
+                padding-top: 100px;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                font-size: 1rem;
+            }
+
+            .hero-image {
+                height: 200px; /* スマホでは高さを抑えて両端が見切れるのを防ぐ */
+                margin-bottom: 2rem;
+            }
+
+            .novel-text {
+                padding: 2rem 1.5rem;
+                /* スマホ用余白縮小 */
+            }
+
+            .chapter-title {
+                font-size: 1.6rem;
+                margin-bottom: 2rem;
+                border-left: none;
+                border-bottom: 2px solid var(--accent-color);
+                padding-bottom: 1rem;
+                padding-left: 0;
+            }
+
+            .anna-note {
+                margin-top: 3rem;
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* CTA・ボタン類 */
+        .cta-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 4rem auto 0;
+            width: 100%;
+            gap: 1.5rem;
+        }
+
+        .btn-note {
+            background-color: transparent;
+            color: var(--gold-color);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--gold-dark);
+            font-family: var(--font-title);
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: inline-block;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-note::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gold-dark);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .btn-note:hover {
+            color: #fff;
+            border-color: var(--gold-color);
+            box-shadow: 0 0 15px rgba(205, 162, 91, 0.4);
+        }
+
+        .btn-note:hover::before {
+            opacity: 0.3;
+        }
+
+        .episode-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+        }
+
+        .nav-link {
+            color: var(--gold-color);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header-glass">
+        <a href="index.html" class="site-title">転生アンナの観察手帳</a>
+        <div style="color: var(--gold-dark);">II</div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <main class="novel-container">
+
+        <div class="hero-image"></div>
+
+        <h1 class="chapter-title">第2話：解剖学とペパーミント、<span style="display:inline-block;">「知性化」の鎧</span></h1>
+
+        <div class="novel-text">
+            <div class="ornament-tr"></div>
+            <div class="ornament-bl"></div>
+
+            <p style="text-align:center; font-weight:bold; color:var(--gold-color);">《常連客の手記 —— 今週のサロンスキャンダル》</p>
+            <p class="spacer"></p>
+
+            <p class="drop-cap">親愛なるセラピストの皆さま。<br>
+                そして、わたくしのように癒やしを求めるお客様。<br>
+                今宵もこの活気ある（そして少しばかり胡散臭い）大衆リラクゼーションサロンのスタッフルームの様子を、薄いカーテン越しのベッドからお届けいたしますわ。</p>
+
+            <p class="spacer"></p>
+
+            <p>今日のサロンには、ひときわ鋭く、そして冷たいペパーミント精油の香りが漂っています。<br>
+                ペパーミント。頭をクリアにし、集中力を高める香りと言われていますが……どうやら今日のこの香りは、何かもっと「生臭いもの」を必死に隠そうとしている、防腐剤のような役割を果たしているようです。</p>
+
+            <p class="spacer"></p>
+
+            <p>その証拠に、隣のベッドから聞こえてくるのは、癒やしの空間には似つかわしくない、流暢すぎる医療用語のマシンガントークなのですから。</p>
+
+            <div class="scene-break"><span>♦</span></div>
+
+            <p>「——ですから、この肩の痛みは『起始部と停止部』の力学的な不均衡が原因なんですよ。特にアナトミートレインのSBLが完全に癒着してる。キミ、歴何ヶ月？ 全然触れてないよ」</p>
+
+            <p class="spacer"></p>
+
+            <p>隣のベッドから聞こえてくるのは、どうやら新規の男性客のようです。<br>
+                先ほどから、担当になった新人セラピストのユミちゃんに対して、まるでダメ出しをするかのように医療知識のマシンガントークを浴びせています。</p>
+
+            <p class="spacer"></p>
+
+            <p>「す、すみません……」<br>
+                「さらに交感神経も過緊張だ。こういう時は栄養学的にマグネシウムとかビタミンB群の消費を考えないと。キミたち、ただ揉んでるだけなの？ 僕はね、都内で一回数万円の手技セミナーを主催してる同業者だけど、ちょっとレベルが低すぎるな。……悪いけど、チェンジで。一番上手い人呼んできてよ」</p>
+
+            <p class="spacer"></p>
+
+            <p>「っ……申し訳ございません……少々、お待ちください」<br>
+                パタパタと、泣き出しそうな足音がスタッフルームへと逃げていくのが分かりました。</p>
+
+            <p class="spacer"></p>
+
+            <p>「……ユミ、泣かなくていいわ。あんなの、ただの『知性化（Intellectualization）』の典型例じゃない」<br>
+                スタッフルームから、氷のように冷たい、けれどどこか面白がっているアンナの声が微かに漏れ聞こえてきました。薄い壁で作られた大衆サロンの良いところは、こういう秘密の会話が筒抜けになることですわ。</p>
+
+            <p class="spacer"></p>
+
+            <p>「知性、化……？」と、鼻水をすするユミちゃんの声。<br>
+                「そう。ナマの感情っていうのは、生温かくて、ひどく恐ろしいものなのよ。あの男はね、偉ぶって見せているけれど、実は自分が抱えている『圧倒的な不安』や『孤独』に飲み込まれるのが怖くてたまらないの」</p>
+
+            <p class="spacer"></p>
+            <p>カチャリ、とティーカップの鳴る音がします。<br>
+                「誰かにすがりたくてこの店に来たのに、ちっぽけなプライドがそれを許さない。だから『高額セミナー主催の整体師』という肩書きと、小難しい解剖学や栄養学っていう立派な『無菌室』に逃げ込んでいるの。自分の惨めな心に触れる恐怖を、ペパーミントのような冷たい理屈でフタをしているだけ。あれはあなたを指導してるんじゃない、自分の心が壊れないために必死で理屈の鎧を着せているのよ。だから、あなたが傷つく必要は一ミリもないわ」</p>
+
+            <p class="spacer"></p>
+
+            <p>あの毒舌な受付嬢が、こんな風に後輩を慰める（分析する？）なんて。わたくしは少し驚いて、隣のベッドに耳を澄ませました。</p>
+
+            <p class="spacer"></p>
+
+            <p>「お待たせいたしました。代わりますね」<br>
+                隣のカーテンが開き、お人好しで無口な店長の落ち着いた声が響きました。<br>
+                「あぁ、店長さん？ キミのところのスタッフ、ちょっと解剖学の基礎が——」</p>
+                
+            <p class="spacer"></p>
+
+            <p>「そうですか」<br>
+            男性客が再びマウントを取り始めようとしたのを、店長の静かな相槌が遮りました。反論も同調もせず、ただただ、物理的な接触だけが始まります。</p>
+
+            <p class="spacer"></p>
+
+            <p>店長は一言も発しません。「起始部」も「マグネシウム」も、一切口にしません。聞こえてくるのは、店長の手がゆっくりと、確実に筋肉の端と端（骨のキワ）を捉える、わずかな衣服の擦過音だけ。</p>
+
+            <p class="spacer"></p>
+
+            <p>「……ん……ぁ……」<br>
+                不意に、男性客の口から、張り詰めていた糸が切れたような小さな声が漏れました。</p>
+
+            <p class="spacer"></p>
+
+            <p>無言の深い持続圧。たったそれだけの、しかし極限まで研ぎ澄まされたアプローチが、理屈の鎧でガチガチに固まっていた彼の無意識のピン留めを、いとも簡単に外してしまったのです。</p>
+
+            <p class="spacer"></p>
+
+            <p>「……セミナーの集客が、全然ダメで……借金ばかり膨らんで……妻にも、愛想をつかされて……」<br>
+                先ほどまでの流暢な医学用語と傲慢な態度はどこへやら。震える声とともに、彼の目からとめどなく涙が溢れ落ちている気配が、痛いほど伝わってきました。同業のプロという仮面を剥ぎ取られた彼は、ただの、慰めを求める孤独な迷子になっていたのです。</p>
+
+            <p class="spacer"></p>
+
+            <p>「……パパが聞いたら、また葉巻の灰をボロボロこぼして驚くわね」<br>
+                スタッフルームで、アンナが実に面白そうに嗤いました。<br>
+                「どんなに分厚い医学書の盾も、ただ正しく『触れる』という原始的な暴力の前には無力ってわけ。あの無愛想な店長の指先には、神経症を暴き出すフロイト顔負けの精神分析の刃が仕込まれているんじゃないかしら」</p>
+
+            <p class="spacer"></p>
+
+            <p>サラサラと、万年筆の音が響きます。アンナの手帳に、また新たな「人間観察の記録」が刻まれているのでしょう。</p>
+
+            <div class="scene-break"><span>♦</span></div>
+
+            <p>一時間が経ち、わたくしの担当セラピストが「お疲れ様でした」と声をかけてくれました。<br>
+                着替えを済ませて受付へと向かうと、そこにはすっかり憑き物が落ち、少し照れくさそうに目を腫らした男性客が、ユミちゃんに「先ほどはキツい言い方をしてごめんなさい」と頭を下げているところでした。</p>
+
+            <p class="spacer"></p>
+
+            <p>小難しい理屈（知性化）の鎧で弱さを隠していたお客様と、無言の手技によってその鎧を脱がせた店長。なんとも皮肉で、そして見事な人間模様です。</p>
+
+            <p class="spacer"></p>
+
+            <p>さて、愛しき皆さま。<br>
+                あなたも、辛い感情から目を背けるために、小難しい「理屈」という冷たい香水をつけてはいませんか？<br>
+                もしその香りに息苦しさを感じたなら、ぜひこのサロンへ。<br>
+                猛毒の受付嬢と、理屈抜きの凄腕店長が、いつでもあなたの「鎧」をひっぱがす準備をして待っておりますわ。</p>
+                
+            <div class="episode-nav">
+                <a href="novel_viewer.html" class="nav-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    第1話へ戻る
+                </a>
+            </div>
+        </div>
+
+        <!-- 横書きのノート -->
+        <aside class="anna-note">
+            <div class="note-header">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+                探求者の手記 - アンナの観察記録
+            </div>
+            <p class="note-text">
+                <strong>No.II：知性化（Intellectualization）</strong><br><br>
+                受け入れがたい感情や、直視するのが恐ろしいナマの苦痛から距離を取るために、事象を「小難しい理論」や「抽象的な知識」として処理しようとする防衛機制。<br><br>
+                「悲しい」「辛い」というナマモノの感情を味わう代わりに、「これは自律神経の乱れによる交感神経優位の状態であり〜」と学術的に分析することで、心を安全な無菌室に隔離する。プロのセラピストがお客様の重たい感情に耐えきれなくなった時、自身の心を守るための盾として、専門用語（アナトミートレインなど）のマシンガントークという形で多用されることが多い。<br><br>
+                理屈の鎧は確かに自分を守ってくれるけれど、それを着たままでは、他人の心の温度は永遠に感じられない。本当に相手を癒やしたいのなら、ペパーミントの香りで感情の死臭をごまかすのをやめて、ただ無言でその「凝り固まった背中（起始部と停止部）」に触れてごらんなさいな。
+            </p>
+        </aside>
+
+        <!-- アクション導線 -->
+        <div class="cta-section">
+            <p
+                style="color:var(--gold-dark); font-family:var(--font-sans); font-size: 0.95rem; text-align:center; margin:0;">
+                この裏口（考察・サロン現場の実態）は特別な扉の奥へ
+            </p>
+            <a href="https://note.com/mochisuranote/m/m51c10d54975d" target="_blank" class="btn-note">
+                結社に戻る
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem; vertical-align: middle; margin-top: -3px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+        </div>
+
+    </main>
+
+    <script>
+        // スクロール読了プログレスバー
+        window.addEventListener('scroll', function () {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        });
+
+        // スクロール連動フェードインアニメーション
+        document.addEventListener("DOMContentLoaded", function () {
+            // 対象となる要素に fade-in クラスを付与
+            const elements = document.querySelectorAll('.novel-text p, .scene-break, .anna-note');
+            elements.forEach(el => el.classList.add('fade-in'));
+
+            // Intersection Observerで画面内に入ったか判定
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // 一度表示されたら監視を解除
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+
+</html>
