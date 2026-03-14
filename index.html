@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>もちスラ・アーカイブス | 転生心理学ユニバース</title>
+    
+    <!-- OGP (Open Graph Protocol) 設定：リンクカード用 -->
+    <meta property="og:title" content="もちスラ・アーカイブス | 転生心理学ユニバース">
+    <meta property="og:description" content="古き精神分析の叡智と15年の臨床から導き出された真実が眠る、特設アーカイブサイト。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mochipj2025.github.io/Anna-/">
+    <meta property="og:image" content="https://mochipj2025.github.io/Anna-/images/eyecatch_ep01.png">
+    
+    <!-- Twitterカード用 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="もちスラ・アーカイブス | 転生心理学ユニバース">
+    <meta name="twitter:description" content="古き精神分析の叡智と15年の臨床から導き出された真実が眠る、特設アーカイブサイト。">
+    <meta name="twitter:image" content="https://mochipj2025.github.io/Anna-/images/eyecatch_ep01.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* 中世ヨーロッパの古城・修道院の図書室をイメージ */
+            --bg-color: #0d0b0a;
+            --text-color: #d1c5b4;
+            --accent-color: #8c2a2a;
+            /* 深紅 */
+            --gold-color: #cda25b;
+            /* アンティークゴールド */
+            --gold-dark: #8c6b3e;
+
+            --card-bg: rgba(28, 25, 24, 0.85);
+            --card-border: #3d3329;
+            --parchment-bg: #e2d4b7;
+            --parchment-text: #2c1e16;
+
+            --font-title: 'Cinzel Decorative', 'Shippori Mincho', serif;
+            --font-body: 'Shippori Mincho', serif;
+            --font-sans: 'Zen Kaku Gothic New', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            background-image:
+                /* 蝋燭の灯りのようなアンビエントライト */
+                radial-gradient(circle at 15% 25%, rgba(60, 40, 20, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(40, 15, 15, 0.3) 0%, transparent 50%),
+                /* 石壁・古い羊皮紙のようなノイズテクスチャ（擬似） */
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* サイトヘッダー */
+        header {
+            text-align: center;
+            padding: 5rem 1rem 3rem;
+            border-bottom: 2px solid var(--gold-dark);
+            position: relative;
+            background: linear-gradient(to bottom, rgba(13, 11, 10, 0.9), transparent);
+        }
+
+        /* ヘッダーの装飾線 */
+        header::after {
+            content: '♦';
+            color: var(--gold-dark);
+            font-size: 1.5rem;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-color);
+            padding: 0 1rem;
+        }
+
+        .site-subtitle {
+            font-family: var(--font-title);
+            color: var(--accent-color);
+            font-size: 1rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .site-title {
+            font-family: var(--font-title);
+            color: var(--gold-color);
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 0.05em;
+            text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(205, 162, 91, 0.2);
+        }
+
+        .site-desc {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            color: #a49788;
+            font-size: 1rem;
+            line-height: 2.2;
+        }
+
+        /* アンナの小説最新話などのピックアップエリア */
+        .pickup-section {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background: var(--card-bg);
+            border: 1px solid var(--gold-dark);
+            position: relative;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8), 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 四隅の装飾 */
+        .pickup-section::before,
+        .pickup-section::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--gold-color);
+            opacity: 0.5;
+        }
+
+        .pickup-section::before {
+            top: 10px;
+            left: 10px;
+            border-bottom: none;
+            border-right: none;
+        }
+
+        .pickup-section::after {
+            bottom: 10px;
+            right: 10px;
+            border-top: none;
+            border-left: none;
+        }
+
+        .pickup-badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.4rem 1.2rem;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .pickup-title {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            color: #fff;
+            margin: 0 0 1.5rem;
+            border-bottom: 1px solid rgba(205, 162, 91, 0.3);
+            padding-bottom: 1rem;
+        }
+
+        .pickup-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--gold-color);
+            text-decoration: none;
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            letter-spacing: 0.1em;
+        }
+
+        .pickup-link:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--gold-color);
+        }
+
+        .pickup-link svg {
+            margin-left: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .pickup-link:hover svg {
+            transform: translateX(8px);
+        }
+
+        /* コンテンツメニュー（3つの本） */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem 5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 3rem 2rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-card::after {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1px solid rgba(205, 162, 91, 0.1);
+            transition: border-color 0.4s ease;
+            pointer-events: none; /* Prevents this overlay from blocking clicks */
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            background: rgba(38, 30, 27, 0.9);
+            border-color: var(--gold-dark);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .menu-card:hover::after {
+            border-color: rgba(205, 162, 91, 0.4);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold-color);
+            opacity: 0.9;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.8));
+        }
+
+        .card-title {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0 1rem;
+            color: #ffffff;
+            letter-spacing: 0.05em;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: #a49788;
+            margin: 0;
+            line-height: 1.8;
+            font-family: var(--font-body);
+        }
+
+        /* メンバーシップ導線 フッター */
+        footer {
+            text-align: center;
+            padding: 4rem 1rem;
+            background-color: #050404;
+            border-top: 1px solid var(--card-border);
+            position: relative;
+        }
+
+        .note-btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--gold-color);
+            padding: 1rem 3rem;
+            border: 1px solid var(--gold-dark);
+            font-family: var(--font-title);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1rem;
+        }
+
+        .note-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gold-dark);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .note-btn:hover {
+            color: #fff;
+            border-color: var(--gold-color);
+            box-shadow: 0 0 20px rgba(205, 162, 91, 0.3);
+        }
+
+        .note-btn:hover::before {
+            opacity: 0.3;
+        }
+
+        .episode-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5rem;
+            text-align: left;
+            width: 100%;
+        }
+
+        .episode-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .episode-link {
+            color: var(--text-color);
+            text-decoration: none;
+            display: inline-block;
+            border-bottom: 1px dashed rgba(205, 162, 91, 0.4);
+            padding-bottom: 0.2rem;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .episode-link:hover {
+            color: #fff;
+            border-bottom-color: var(--gold-color);
+        }
+
+        .episode-link-disabled {
+            display: inline-block;
+            color: #9c8b7b;
+            font-size: 0.95rem;
+            pointer-events: none;
+            line-height: 1.5;
+        }
+
+        .ep-num {
+            color: var(--gold-color);
+            margin-right: 0.5rem;
+            font-family: var(--font-sans);
+            font-weight: 500;
+        }
+
+        .episode-link-disabled .ep-num {
+            color: #8c7b6b;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 3rem 1.5rem 2.5rem;
+            }
+
+            .site-title {
+                font-size: 1.8rem;
+                line-height: 1.3;
+            }
+
+            .site-desc {
+                font-size: 0.95rem;
+                padding: 0 0.5rem;
+            }
+
+            .container {
+                padding: 0 1.5rem 3rem;
+                grid-template-columns: 1fr;
+            }
+
+            .pickup-section {
+                margin: 2rem 1.5rem;
+                padding: 2.5rem 1.5rem;
+            }
+
+            .pickup-title {
+                font-size: 1.4rem;
+                line-height: 1.5;
+            }
+
+            .menu-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .card-title {
+                font-size: 1.3rem;
+            }
+
+            .note-btn {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="site-subtitle">The Archives of Unconscious</div>
+        <h1 class="site-title">もうひとつのカウチ<br>〜もちスラ深層心理学堂〜</h1>
+        <p class="site-desc">
+            ここは、言葉と身体の狭間で「心の鎧（防衛機制）」を静かに解きほぐすための記録保管所。<br>古き精神分析の叡智と、15年の臨床から導き出された真実が眠っています。
+        </p>
+    </header>
+
+    <section class="pickup-section">
+        <div class="pickup-badge">The Latest Chronicle</div>
+        <h2 class="pickup-title">転生アンナの観察手帳<br>第1話：現場の過酷さと、目を伏せる「合理化」の鎧</h2>
+        <a href="novel_viewer.html" class="pickup-link">
+            巻物を紐解く
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+        </a>
+    </section>
+
+    <div class="container">
+        <!-- 1. 小説 -->
+        <div class="menu-card">
+            <div class="card-icon">📜</div>
+            <h3 class="card-title">探求者の手記（小説）</h3>
+            <p class="card-desc">
+                転生したアンナ・フロイトが現代の激安サロンで書き留める、防衛機制と身体の記録。（全話無料）
+            </p>
+            <ul class="episode-list">
+                <li>
+                    <a href="novel_viewer.html" class="episode-link">
+                        <span class="ep-num">第1話</span>
+                        現場の過酷さと、目を伏せる「合理化」の鎧
+                    </a>
+                </li>
+                <li>
+                    <a href="episode02_viewer.html" class="episode-link">
+                        <span class="ep-num">第2話</span>
+                        解剖学とペパーミント、「知性化」の鎧
+                    </a>
+                </li>
+                <li>
+                    <span class="episode-link-disabled">
+                        <span class="ep-num">第3話</span>
+                        完璧な星と、ひび割れたSNSの祭壇（仮）
+                    </span>
+                </li>
+                <li>
+                    <span class="episode-link-disabled">
+                        <span class="ep-num">第4話</span>
+                        「課題の分離」と冷たいカレイドスコープ（仮）
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 2. 辞書 -->
+        <a href="#" class="menu-card">
+            <div class="card-icon">🗝️</div>
+            <h3 class="card-title">禁書の用語辞典</h3>
+            <p class="card-desc">
+                「防衛機制」「ネガティブ・ケイパビリティ」など、心理学と神経科学の生きた用語集。
+            </p>
+        </a>
+
+        <!-- 3. Wiki -->
+        <a href="#" class="menu-card">
+            <div class="card-icon">🏰</div>
+            <h3 class="card-title">先人たちの肖像</h3>
+            <p class="card-desc">
+                フロイト、ユング、アドラー。現代の病理に立ち向かう偉大な精神医学者たちとその系譜。
+            </p>
+        </a>
+    </div>
+
+    <footer>
+        <p style="color: #a49788; margin-bottom: 2rem; font-size: 0.95rem; font-family: var(--font-body);">
+            サロンの現場でのさらに深い臨床考察は、特別な扉の奥へ。</p>
+        <a href="https://note.com/mochisuranote/m/m51c10d54975d" target="_blank" class="note-btn">
+            秘密結社「もちスラ」へ参入する
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem; vertical-align: middle; margin-top: -3px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </a>
+    </footer>
+
+</body>
+
+</html>
